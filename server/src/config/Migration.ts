@@ -8,7 +8,7 @@ const sequelize = db.getSequelizeInstance();
 async function migrate() {
   try {
     // Just referencing the models is enough to register them
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ alter: true });
     console.log("models are synchronized");
   } catch (error) {
     console.error(error);

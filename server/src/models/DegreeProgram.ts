@@ -1,10 +1,15 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import db from "../config/Database";
 
 const sequelize = db.getSequelizeInstance();
 
-const DegreeProgram = sequelize.define(
-  "DegreePrograms",
+class DegreeProgram extends Model {
+  declare degreeName: string;
+  declare degreeDescription: string;
+  declare degreeDepartment: string;
+}
+
+DegreeProgram.init(
   {
     degreeName: {
       type: DataTypes.STRING,
@@ -20,8 +25,10 @@ const DegreeProgram = sequelize.define(
     },
   },
   {
+    sequelize,
+    modelName: "DegreeProgram",
+    tableName: "degreeprograms",
     timestamps: true,
-    tableName: "degreePrograms",
   }
 );
 
