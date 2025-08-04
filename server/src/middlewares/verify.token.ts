@@ -2,12 +2,27 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
-// type DecodedTypes = {
-//   id: number;
-//   firstName: string;
-//   middleName: string;
-//   lastName: string;
-// };
+interface JWTPayload {
+  id: number;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+}
+
+// this is called module augmentation
+// declare module "express-serve-static-core" {
+//   interface Request {
+//     currentUser?: JWTPayload;
+//   }
+// }
+
+// declare global {
+//   namespace Express {
+//     interface Request {
+//       currentUser?: JWTPayload;
+//     }
+//   }
+// }
 
 export const verifyToken = async (
   req: Request,
@@ -20,15 +35,13 @@ export const verifyToken = async (
       return res.status(401).json({ message: "Unauthorized: No token found" });
     console.log("inside verify", token);
 
-
-    // configure the nodemodules/index.d.ts
     jwt.verify(
       token,
       process.env.ACCESS_TOKEN_KEY as string,
       (error: any, decoded: any) => {
         if (error) return res.status(401).json({ error });
 
-        req.currentUser = decoded
+        res.locals.currentUser = decoded;
         next();
       }
     );

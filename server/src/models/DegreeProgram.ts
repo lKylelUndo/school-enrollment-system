@@ -4,6 +4,7 @@ import db from "../config/Database";
 const sequelize = db.getSequelizeInstance();
 
 class DegreeProgram extends Model {
+  declare id: number;
   declare degreeName: string;
   declare degreeDescription: string;
   declare degreeDepartment: string;
