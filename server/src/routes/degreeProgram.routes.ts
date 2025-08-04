@@ -1,26 +1,26 @@
 import { Router } from "express";
-import DegreeProgram from "../controllers/degreeProgram.controller";
+import DegreeProgramController from "../controllers/degreeProgram.controller";
 import { verifyToken } from "../middlewares/verify.token";
 import { addNewProgramValidationRules } from "../validations/degreePrograms.validation";
 
 const router: Router = Router();
 
-router.get("/api/view-a-program/:id", DegreeProgram.viewAProgram);
-router.get("/api/view-all-programs", DegreeProgram.getAllProgram);
+router.get("/api/view-a-program/:id", DegreeProgramController.viewAProgram);
+router.get("/api/view-all-programs", DegreeProgramController.getAllProgram);
 router.post(
   "/api/add-new-program",
   addNewProgramValidationRules,
-  DegreeProgram.addNewProgram
+  DegreeProgramController.addNewProgram
 );
 router.put(
   "/api/update-program/:id",
 
-  DegreeProgram.updateAProgram
+  DegreeProgramController.updateAProgram
 );
 router.delete(
   "/api/delete-a-program/:id",
 
-  DegreeProgram.deleteAProgram
+  DegreeProgramController.deleteAProgram
 );
 
 export default router;
