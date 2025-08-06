@@ -49,7 +49,56 @@ function AboutSection() {
         </div>
       </div>
 
-      <div>{/* Additional content or section can go here */}</div>
+      <div className="w-3/4 flex justify-between gap-3 !mx-auto">
+        <div className="text-4xl font-semibold flex flex-col gap-y-2 w-[500px]">
+          <h1 className="text-xl underline text-green-900">About Us</h1>
+          <h1>Our Edukado System</h1>
+          <h1>
+            <span className="text-green-900">Inspires</span> You More.
+          </h1>
+          <h1 className="text-[16px] text-slate-800 leading-6">
+            Edukado is dedicated to delivering quality, affordable education.
+            With expert lecturers, modern facilities, scholarships, and a rich
+            library, we empower students to succeed and stay inspired.
+          </h1>
+        </div>
+
+        <div className="bg-gray-100 basis-lg grid grid-cols-2 gap-3 w-[1000px] h-[500px]">
+          {/* Large vertical image on the left */}
+          <div className="row-span-2 overflow-hidden rounded-xl">
+            <img
+              src="/aboutimg1.jpg"
+              className="w-full h-full object-cover"
+              alt=""
+            />
+          </div>
+
+          {/* Top-right image */}
+          <div className="overflow-hidden rounded-xl">
+            <img
+              src="/aboutimg2.jpg"
+              className="w-full h-full object-cover"
+              alt=""
+            />
+          </div>
+
+          {/* Bottom-right section with text and image */}
+          <div className="flex flex-col justify-between gap-2">
+            <div className="bg-white rounded-xl p-4 text-center shadow">
+              <h1 className="text-md font-semibold text-slate-800">
+                Be Part of Us
+              </h1>
+            </div>
+            <div className="overflow-hidden rounded-xl h-full">
+              <img
+                src="/aboutimg3.jpg"
+                className="w-full h-full object-cover"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

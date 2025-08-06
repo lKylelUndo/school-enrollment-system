@@ -12,6 +12,10 @@
   font-family: "Roboto", "sans-serif";
 }
 
+body, html {
+  background-color: rgb(246, 241, 241);
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
