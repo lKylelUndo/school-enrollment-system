@@ -6,8 +6,8 @@ function Navbar() {
       <div className="relative">
         <div className="absolute inset-0 bg-white/30 backdrop-blur-md z-[-1]" />
 
-        <div className="lg:w-2/3 w-full container !mx-auto flex justify-between">
-          <div className="flex items-center gap-x-2">
+        <div className="sm:w-2/3 lg:w-[900px] container !mx-auto flex justify-between">
+          <div className="flex items-center gap-x-2 w-full lg:w-[900px]">
             <img className="w-12 h-auto" src="./mortarboard.png" alt="" />
             <h1 className="text-2xl font-extrabold">
               <NavLink to={"/"}>

@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 function AboutSection() {
   return (
     <div className="min-h-screen">
-      <div className="grid grid-cols-4 gap-3 !p-10 !-mt-20 text-slate-905">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3 !p-10 !-mt-20 text-slate-905">
         <div className="!px-6 !py-14 flex flex-col gap-y-2 bg-slate-50 rounded-3xl shadow-md">
           <div>
             <img src="./fund.png" className="w-14" alt="" />
@@ -49,18 +49,19 @@ function AboutSection() {
         </div>
       </div>
 
-      <div className="w-3/4 flex justify-between gap-x-8 gap-y-4 !mx-auto">
-        <div className="text-4xl font-semibold flex flex-col gap-y-2 w-[500px]">
+      <div className="w-3/4 grid lg:grid-cols-2  gap-x-8 gap-y-4 !mx-auto">
+        <div className="text-4xl font-semibold flex flex-col gap-y-2 lg:w-[500px] w-full">
           <h1 className="text-xl underline text-green-900">About Us</h1>
           <h1>Our Edukado System</h1>
           <h1>
             <span className="text-green-900">Inspires</span> You More.
           </h1>
-          <h1 className="text-[16px] text-slate-800 leading-6">
+          <h1 className="text-[14px] text-slate-800 leading-6">
             Edukado is dedicated to delivering quality, affordable education.
             With expert lecturers, modern facilities, scholarships, and a rich
             library, we empower students to succeed and stay inspired.
           </h1>
+          <h1></h1>
         </div>
 
         <div className="bg-gray-100 basis-lg grid grid-cols-2 gap-3 w-auto h-auto">
@@ -72,11 +73,14 @@ function AboutSection() {
             <img src="./aboutimg2.jpg" className="" alt="" />
           </div>
 
-          <div className=" h-[80px] flex items-center justify-between rounded-4xl text-gray-50 !p-4">
-            <Button variant={"default"} className="!px-4 !py-6 w-full flex justify-between">
-              Be Part of Us{" "}
+          <div className=" h-[80px] flex items-center justify-between  text-gray-50 !p-4">
+            <Button
+              variant={"default"}
+              className="lg:!px-4 lg:!py-6 !p-3 !text-sm  w-full flex justify-between"
+            >
+              Be Part of Us
               <span className="">
-                <img src="./team.png" className="w-[30px]" alt="" />
+                <img src="./team.png" className="w-[20px]" alt="" />
               </span>
             </Button>
           </div>
@@ -87,8 +91,8 @@ function AboutSection() {
         </div>
       </div>
 
-      <div className="bg-[url('./belowbackground.jpg')] bg-no-repeat bg-cover h-[400px] !mt-12">
-        <div className="bg-white/20 backdrop-brightness-50 w-full h-full grid grid-cols-4 !pt-40 text-gray-100">
+      <div className="bg-[url('./belowbackground.jpg')] max-w-full bg-no-repeat bg-cover lg:bg-top bg-center lg:h-[400px] !mt-12">
+        <div className="bg-white/20 backdrop-brightness-50 w-full h-full grid md:grid-cols-2 lg:grid-cols-4 lg:!pt-40 !py-20 lg:gap-y-0 gap-y-4 text-gray-100">
           <div className="text-center">
             <h1 className="text-5xl">20</h1>
             <h1>+ Total Programs</h1>
