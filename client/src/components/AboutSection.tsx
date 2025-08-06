@@ -1,8 +1,8 @@
-import { ScrollText } from "lucide-react";
+import { Button } from "./ui/button";
 
 function AboutSection() {
   return (
-    <div className="h-lvh">
+    <div className="min-h-screen">
       <div className="grid grid-cols-4 gap-3 !p-10 !-mt-20 text-slate-905">
         <div className="!px-6 !py-14 flex flex-col gap-y-2 bg-slate-50 rounded-3xl shadow-md">
           <div>
@@ -49,7 +49,7 @@ function AboutSection() {
         </div>
       </div>
 
-      <div className="w-3/4 flex justify-between gap-3 !mx-auto">
+      <div className="w-3/4 flex justify-between gap-x-8 gap-y-4 !mx-auto">
         <div className="text-4xl font-semibold flex flex-col gap-y-2 w-[500px]">
           <h1 className="text-xl underline text-green-900">About Us</h1>
           <h1>Our Edukado System</h1>
@@ -63,39 +63,50 @@ function AboutSection() {
           </h1>
         </div>
 
-        <div className="bg-gray-100 basis-lg grid grid-cols-2 gap-3 w-[1000px] h-[500px]">
-          {/* Large vertical image on the left */}
-          <div className="row-span-2 overflow-hidden rounded-xl">
-            <img
-              src="/aboutimg1.jpg"
-              className="w-full h-full object-cover"
-              alt=""
-            />
+        <div className="bg-gray-100 basis-lg grid grid-cols-2 gap-3 w-auto h-auto">
+          <div>
+            <img src="./aboutimg1.jpg" className="" alt="" />
           </div>
 
-          {/* Top-right image */}
-          <div className="overflow-hidden rounded-xl">
-            <img
-              src="/aboutimg2.jpg"
-              className="w-full h-full object-cover"
-              alt=""
-            />
+          <div>
+            <img src="./aboutimg2.jpg" className="" alt="" />
           </div>
 
-          {/* Bottom-right section with text and image */}
-          <div className="flex flex-col justify-between gap-2">
-            <div className="bg-white rounded-xl p-4 text-center shadow">
-              <h1 className="text-md font-semibold text-slate-800">
-                Be Part of Us
-              </h1>
-            </div>
-            <div className="overflow-hidden rounded-xl h-full">
-              <img
-                src="/aboutimg3.jpg"
-                className="w-full h-full object-cover"
-                alt=""
-              />
-            </div>
+          <div className=" h-[80px] flex items-center justify-between rounded-4xl text-gray-50 !p-4">
+            <Button variant={"default"} className="!px-4 !py-6 w-full flex justify-between">
+              Be Part of Us{" "}
+              <span className="">
+                <img src="./team.png" className="w-[30px]" alt="" />
+              </span>
+            </Button>
+          </div>
+
+          <div>
+            <img src="./aboutimg3.jpg" className="" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-[url('./belowbackground.jpg')] bg-no-repeat bg-cover h-[400px] !mt-12">
+        <div className="bg-white/20 backdrop-brightness-50 w-full h-full grid grid-cols-4 !pt-40 text-gray-100">
+          <div className="text-center">
+            <h1 className="text-5xl">20</h1>
+            <h1>+ Total Programs</h1>
+          </div>
+
+          <div className="text-center">
+            <h1 className="text-5xl">2600</h1>
+            <h1>+ Our Students</h1>
+          </div>
+
+          <div className="text-center">
+            <h1 className="text-5xl">200</h1>
+            <h1>+ Skilled Lecturers</h1>
+          </div>
+
+          <div className="text-center">
+            <h1 className="text-5xl">20</h1>
+            <h1>+ Award Winnings</h1>
           </div>
         </div>
       </div>
