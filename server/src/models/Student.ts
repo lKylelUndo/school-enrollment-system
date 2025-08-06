@@ -3,7 +3,13 @@ import db from "../config/Database";
 
 const sequelize = db.getSequelizeInstance();
 
-class Student extends Model {}
+class Student extends Model {
+  declare isEnrolled: boolean;
+  declare id: number;
+  declare userId: number;
+  declare studentName: string;
+  declare enrolledAt: string;
+}
 
 Student.init(
   {
@@ -13,12 +19,12 @@ Student.init(
       primaryKey: true,
     },
     userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: "users",
-            key: "id"
-        }
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "users",
+        key: "id",
+      },
     },
     studentName: {
       type: DataTypes.STRING,

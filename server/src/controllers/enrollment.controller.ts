@@ -30,7 +30,17 @@ class Enrollment {
 
   static async unEnrollADegree(req: Request, res: Response) {
     try {
+      const { userId } = req.params;
 
+      const findStudent = await Student.findOne({ where: { userId } });
+      if (!findStudent)
+        return res.status(400).json({ message: "Currently not enrolled" });
+
+      const unenrolledStudent = await Student.destroy({ where: { userId } });
+
+      return res
+        .status(200)
+        .json({ message: "Successfully unenrolled", unenrolledStudent });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ error });
