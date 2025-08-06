@@ -1,7 +1,9 @@
 import db from "./Database";
+import "./Associations";
 import "../models/User";
 // import "../models/Admin";
 import "../models/DegreeProgram";
+import "../models/Student";
 
 const sequelize = db.getSequelizeInstance();
 
