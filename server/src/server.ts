@@ -8,7 +8,12 @@ import { verifyToken } from "./middlewares/verify.token";
 
 const app: Application = express();
 
-app.use(cors());
+const corsOption = {
+  origin: "http://localhost:5173",
+  credentials: true,
+};
+
+app.use(cors(corsOption));
 app.use(express.json());
 app.use(cookieParser());
 app.use(routes);
