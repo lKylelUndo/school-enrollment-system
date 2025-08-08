@@ -218,7 +218,7 @@ function Register() {
           </div>
 
           <div className="!mt-6">
-            <Button className="w-full">Register</Button>
+            <Button type="submit" className="w-full">Register</Button>
           </div>
         </form>
 
