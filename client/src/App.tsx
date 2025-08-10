@@ -3,6 +3,8 @@ import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import HomePage from "./pages/HomePage";
+import Programs from "./pages/Programs";
 
 function App() {
   return (
@@ -10,8 +12,13 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
+
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+
+          <Route path="homepage" element={<HomePage />} />
+          <Route path="undergraduate-programs" element={<Programs />} />
+
           <Route path="*" element={<h1>Page not found</h1>} />
         </Route>
       </Routes>

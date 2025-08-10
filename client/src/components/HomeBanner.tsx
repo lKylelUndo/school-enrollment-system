@@ -19,9 +19,11 @@ function HomeBanner() {
           And <span className="text-green-700">Bright</span> Future
         </h1>
         <div className="flex lg:justify-start justify-center gap-x-3 !mt-10">
-          <Button className="!px-4 !py-3">View More</Button>
-          <Button variant={"outline"}  className="!px-4 !py-3">
-            <NavLink to={'/login'}>Enroll Now</NavLink>
+          <Button className="!px-4 !py-3">
+            <NavLink to={"/undergraduate-programs"}>View More</NavLink>
+          </Button>
+          <Button variant={"outline"} className="!px-4 !py-3">
+            <NavLink to={"/login"}>Enroll Now</NavLink>
           </Button>
         </div>
       </div>
