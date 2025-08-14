@@ -1,25 +1,11 @@
-"use client";
-
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import CardProgram from "@/components/CardProgram";
 
 function Programs() {
   const [selectedDepartment, setSelectedDepartment] =
@@ -133,7 +119,7 @@ function Programs() {
     ],
   };
 
-  const departmentNames = Object.keys(allPrograms);
+  // const departmentNames = Object.keys(allPrograms);
   const filteredPrograms = allPrograms[selectedDepartment];
 
   return (
@@ -146,10 +132,8 @@ function Programs() {
 
       <div className="md:w-2/3  !mx-auto text-center !-mt-4">
         <DropdownMenu>
-          <DropdownMenuTrigger>
-            <button className="!px-4 text-gray-50 !py-2 bg-green-700 rounded-lg">
-              Programs
-            </button>
+          <DropdownMenuTrigger className="!px-4 text-gray-50 !py-2 bg-green-700 rounded-lg">
+            Programs
           </DropdownMenuTrigger>
           <DropdownMenuContent className="!p-4 w-80 flex flex-col gap-4">
             <DropdownMenuItem
@@ -174,12 +158,7 @@ function Programs() {
 
       <div className="md:w-[1100px] !mt-10 !mx-auto grid lg:grid-cols-3 gap-6">
         {filteredPrograms.map((program, index) => (
-          <Card key={index} className="!p-6">
-            <CardHeader>
-              <CardTitle>{program.title}</CardTitle>
-              <CardDescription>{program.description}</CardDescription>
-            </CardHeader>
-          </Card>
+          <CardProgram key={index} program={program} />
         ))}
       </div>
     </>

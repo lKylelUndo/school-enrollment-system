@@ -5,6 +5,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
 import Programs from "./pages/Programs";
+import PrivateRoutes from "./routes/PrivateRoutes";
+import DashBoard from "./pages/DashBoard";
+import PublicRoutes from "./routes/PublicRoutes";
 
 function App() {
   return (
@@ -13,11 +16,17 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
 
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+          <Route element={<PublicRoutes />}>
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+          </Route>
 
-          <Route path="homepage" element={<HomePage />} />
-          <Route path="undergraduate-programs" element={<Programs />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="homepage" element={<HomePage />} />
+            <Route path="undergraduate-programs" element={<Programs />} />
+
+            <Route path="dashboard" element={<DashBoard />} />
+          </Route>
 
           <Route path="*" element={<h1>Page not found</h1>} />
         </Route>
