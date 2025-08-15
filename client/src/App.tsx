@@ -22,9 +22,11 @@ function App() {
           </Route>
 
           <Route element={<PrivateRoutes />}>
+            {/* User's Route */}
             <Route path="homepage" element={<HomePage />} />
             <Route path="undergraduate-programs" element={<Programs />} />
 
+            {/* Admin Route */}
             <Route path="dashboard" element={<DashBoard />} />
           </Route>
 

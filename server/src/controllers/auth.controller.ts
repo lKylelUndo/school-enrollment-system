@@ -18,21 +18,26 @@ class Auth {
       const data = matchedData(req);
 
       const foundUser = await User.findOne({ where: { email: data.email } });
-      if (!foundUser) return res.status(400).json({ message: "No user found" });
+      if (!foundUser)
+        return res
+          .status(400)
+          .json({ errors: [{ path: "email", msg: "Email not found" }] });
 
       const isPasswordMatch = await comparePassword(
         data.password,
         foundUser.password
       );
       if (!isPasswordMatch)
-        return res.status(400).json({ message: "Incorrect password" });
+        return res.status(400).json({
+          errors: [{ path: "password", msg: "Incorrect password" }],
+        });
 
       const token = await generateToken(foundUser);
 
       res.cookie("token", token, {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 12,
-        secure: false,
+        secure: true,
         sameSite: "none",
       });
 
@@ -53,9 +58,9 @@ class Auth {
 
       const data = matchedData(req);
 
-      const findUser = await User.findOne({where: {email: data.email}});
-      if (findUser) return res.status(400).json({message: "Email already registered"})
-      
+      const findUser = await User.findOne({ where: { email: data.email } });
+      if (findUser)
+        return res.status(400).json({ message: "Email already registered" });
 
       data.password = await hashedPassword(data.password);
       User.create(data);

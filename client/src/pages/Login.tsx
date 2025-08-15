@@ -1,11 +1,13 @@
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import { useAuthContext } from "@/context/AuthProvider";
 import type { loginTypes } from "@/types/login";
 import { AlertCircleIcon } from "lucide-react";
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { NavLink } from "react-router-dom";
 
 function Login() {
+  const { auth, setAuth } = useAuthContext();
   const [formData, setFormData] = useState<loginTypes>({
     email: "",
     password: "",
@@ -33,7 +35,7 @@ function Login() {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
+      // console.log(responseData);
 
       if (!response.ok) {
         const errorsObj: Record<string, string> = {};
@@ -43,11 +45,28 @@ function Login() {
 
         console.log(errorsObj);
         setErrors(errorsObj);
+
+        return;
       }
+      const { firstName, middleName, lastName, isAdmin, id } =
+        responseData.foundUser;
+
+      setAuth({
+        firstName,
+        middleName,
+        lastName,
+        isAdmin,
+        userId: id,
+        isAuthenticated: true,
+      });
     } catch (error) {
       console.log(error);
     }
   };
+
+  // useEffect(() => {
+  //   console.table(auth);
+  // }, [auth]);
 
   return (
     <div className="lg:w-2/3 !mx-auto h-lvh">

@@ -18,14 +18,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(routes);
 
-app.get("/api/get-token", verifyToken, (req: Request, res: Response) => {
+app.get("/api/verify-user", verifyToken, (req: Request, res: Response) => {
   console.dir(res.locals.currentUser);
   return res.status(200).json({ user: res.locals.currentUser });
 });
 
-// const PORT = process.env.PORT || 3000;
 const PORT = 5000;
-
 try {
   app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);

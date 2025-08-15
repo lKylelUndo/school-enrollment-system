@@ -23,7 +23,9 @@ function PrivateRoutes() {
         navigate("/homepage");
       }
     }
-  }, [auth, path, navigate]);
+  }, [auth, path, navigate, loading]);
+
+  if (loading) return null;
 
   return auth.isAuthenticated ? <Outlet /> : null;
 }

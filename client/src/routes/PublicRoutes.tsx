@@ -3,18 +3,16 @@ import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 function PublicRoutes() {
-  const { auth } = useAuthContext();
+  const { auth, loading } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      if (auth.isAdmin) {
-        navigate("/dashboard");
-      } else {
-        navigate("/homepage");
-      }
+      navigate(auth.isAdmin ? "/dashboard" : "/homepage");
     }
-  }, [auth]);
+  }, [auth, loading]);
+
+  if (loading) return null;
 
   return !auth.isAuthenticated ? <Outlet /> : null;
 }
