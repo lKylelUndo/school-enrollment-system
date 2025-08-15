@@ -54,7 +54,7 @@ function Navbar() {
             </h1>
           </div>
 
-          {auth?.isAuthenticated && (
+          {auth?.isAuthenticated && !auth?.isAdmin && (
             <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -70,6 +70,11 @@ function Navbar() {
                   <DropdownMenuGroup>
                     <DropdownMenuItem>
                       Profile
+                      <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                    </DropdownMenuItem>
+
+                     <DropdownMenuItem>
+                      <NavLink to={'/enrollment-status'}>Enrollent Status</NavLink>
                       <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                     </DropdownMenuItem>
                   </DropdownMenuGroup>

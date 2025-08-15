@@ -62,7 +62,9 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
         });
       } catch (error) {
         console.log(error);
-      } 
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchVerifyUser();

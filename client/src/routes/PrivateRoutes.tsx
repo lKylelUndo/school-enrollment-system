@@ -10,9 +10,15 @@ function PrivateRoutes() {
   const path = location.pathname;
 
   const adminRoutes = ["/dashboard"];
-  const userRoutes = ["/homepage", "/undergraduate-programs"];
+  const userRoutes = [
+    "/homepage",
+    "/undergraduate-programs",
+    "/enrollment-status",
+  ];
 
   useEffect(() => {
+    if (loading) return;
+
     if (!auth?.isAuthenticated) {
       console.log("unauth");
       navigate("/login");
@@ -24,8 +30,6 @@ function PrivateRoutes() {
       }
     }
   }, [auth, path, navigate]);
-
-  // if (loading) return null;
 
   return auth?.isAuthenticated ? <Outlet /> : null;
 }

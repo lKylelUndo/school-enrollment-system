@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,120 +7,44 @@ import {
 } from "@/components/ui/dropdown-menu";
 import CardProgram from "@/components/CardProgram";
 
+type ProgramTypes = {
+  id: number;
+  degreeName: string;
+  degreeDescription: string;
+  degreeDepartment: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 function Programs() {
+  const [allPrograms, setPrograms] = useState<ProgramTypes[]>([]);
   const [selectedDepartment, setSelectedDepartment] =
     useState("Computer Studies");
 
-  const allPrograms: Record<string, any[]> = {
-    Education: [
-      {
-        title: "Bachelor of Education",
-        description: "Prepares students for teaching in schools.",
-        action: "Apply Now",
-        content:
-          "Covers pedagogy, curriculum development, and classroom management.",
-        footer: "Duration: 4 years",
-      },
-      {
-        title: "Early Childhood Education",
-        description: "Focuses on development in early years.",
-        action: "Learn More",
-        content:
-          "Learn child psychology, learning through play, and family engagement.",
-        footer: "Duration: 3 years",
-      },
-    ],
-    Engineering: [
-      {
-        title: "BSc in Civil Engineering",
-        description: "Design and construct infrastructure.",
-        action: "View Curriculum",
-        content:
-          "Covers structural analysis, soil mechanics, and construction management.",
-        footer: "Duration: 4 years",
-      },
-      {
-        title: "BSc in Electrical Engineering",
-        description: "Work with electrical systems and power grids.",
-        action: "Join Program",
-        content: "Learn circuits, power systems, and renewable energy.",
-        footer: "Duration: 4 years",
-      },
-    ],
-    "Computer Studies": [
-      {
-        title: "BSc in Computer Science",
-        description:
-          "Foundational program in computing, algorithms, and data structures.",
-        action: "Apply Now",
-        content:
-          "Covers programming, databases, AI, and systems design. Prepares students for software engineering roles.",
-        footer: "Duration: 4 years",
-      },
-      {
-        title: "BSc in Software Engineering",
-        description:
-          "Focused on the design, development, and maintenance of software systems.",
-        action: "View Curriculum",
-        content:
-          "Includes agile development, testing, project management, and advanced programming courses.",
-        footer: "Duration: 4 years",
-      },
-      {
-        title: "BSc in Data Science",
-        description:
-          "Program integrating computer science with statistical methods.",
-        action: "Enroll Today",
-        content:
-          "Learn machine learning, data visualization, and big data tools like Hadoop and Spark.",
-        footer: "Duration: 4 years",
-      },
-      {
-        title: "BSc in Cybersecurity",
-        description:
-          "Focuses on protecting systems and networks from digital attacks.",
-        action: "Secure Your Future",
-        content:
-          "Topics include ethical hacking, cryptography, and network security practices.",
-        footer: "Duration: 4 years",
-      },
-      {
-        title: "BSc in Artificial Intelligence",
-        description: "Specialized program in AI theory and application.",
-        action: "Start AI Journey",
-        content:
-          "Explore neural networks, natural language processing, and robotics.",
-        footer: "Duration: 4 years",
-      },
-      {
-        title: "BSc in Information Technology",
-        description:
-          "Prepares students to manage and support IT infrastructure.",
-        action: "Learn More",
-        content:
-          "Covers networking, cloud computing, system admin, and support services.",
-        footer: "Duration: 3 years",
-      },
-      {
-        title: "Diploma in Web Development",
-        description:
-          "Hands-on course for front-end and back-end web development.",
-        action: "Register Now",
-        content: "Covers HTML, CSS, JavaScript, React, Node.js, and databases.",
-        footer: "Duration: 2 years",
-      },
-      {
-        title: "Certificate in Game Development",
-        description: "Introductory course for game design and programming.",
-        action: "Join Program",
-        content: "Learn Unity, C#, 2D/3D design, and interactive storytelling.",
-        footer: "Duration: 1 year",
-      },
-    ],
-  };
+  useEffect(() => {
+    async function fetchAllPrograms() {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/view-all-programs",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
 
-  // const departmentNames = Object.keys(allPrograms);
-  const filteredPrograms = allPrograms[selectedDepartment];
+        const responseData = await response.json();
+
+        setPrograms(responseData.allDegreePrograms);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchAllPrograms();
+  }, []);
+
+  const filteredPrograms = allPrograms.filter(
+    (program) => program.degreeDepartment === selectedDepartment
+  );
 
   return (
     <>
