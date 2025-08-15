@@ -10,9 +10,9 @@ function PublicRoutes() {
     if (auth.isAuthenticated) {
       navigate(auth.isAdmin ? "/dashboard" : "/homepage");
     }
-  }, [auth, loading]);
+  }, [auth]);
 
-  if (loading) return null;
+  // if (loading) return null;
 
   return !auth.isAuthenticated ? <Outlet /> : null;
 }

@@ -7,7 +7,7 @@ type AuthType = {
   middleName: string;
   lastName: string;
   isAdmin?: boolean;
-};
+} | null;
 
 type AuthContextType = {
   auth: AuthType;
@@ -62,9 +62,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
         });
       } catch (error) {
         console.log(error);
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     fetchVerifyUser();

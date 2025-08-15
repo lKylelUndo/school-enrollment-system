@@ -37,8 +37,8 @@ class Auth {
       res.cookie("token", token, {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 12,
-        secure: true,
-        sameSite: "none",
+        secure: false,
+        sameSite: "lax",
       });
 
       return res.status(200).json({ message: "Success", foundUser });
@@ -65,6 +65,24 @@ class Auth {
       data.password = await hashedPassword(data.password);
       User.create(data);
       return res.status(200).json({ message: "Success" });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json(error);
+    }
+  }
+
+  static async handleLogout(req: Request, res: Response) {
+    try {
+      const { token } = req.cookies;
+      if (!token) return res.status(400).json({ message: "No token found" });
+
+      res.clearCookie("token", {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: false,
+      });
+
+      return res.status(200).json({ message: "Logout successfully" });
     } catch (error) {
       console.log(error);
       return res.status(500).json(error);

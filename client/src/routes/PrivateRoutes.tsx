@@ -13,7 +13,7 @@ function PrivateRoutes() {
   const userRoutes = ["/homepage", "/undergraduate-programs"];
 
   useEffect(() => {
-    if (!auth.isAuthenticated) {
+    if (!auth?.isAuthenticated) {
       console.log("unauth");
       navigate("/login");
     } else {
@@ -23,11 +23,11 @@ function PrivateRoutes() {
         navigate("/homepage");
       }
     }
-  }, [auth, path, navigate, loading]);
+  }, [auth, path, navigate]);
 
-  if (loading) return null;
+  // if (loading) return null;
 
-  return auth.isAuthenticated ? <Outlet /> : null;
+  return auth?.isAuthenticated ? <Outlet /> : null;
 }
 
 export default PrivateRoutes;
