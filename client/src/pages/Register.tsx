@@ -5,6 +5,7 @@ import { useEffect, useState, type ChangeEvent } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AlertCircleIcon } from "lucide-react";
 import { toast } from "sonner";
+import { callRegister } from "@/services/AuthServices";
 
 function Register() {
   const navigate = useNavigate();
@@ -29,19 +30,10 @@ function Register() {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      console.log(formData);
+      const result = await callRegister(formData);
+      if (!result) throw new Error("Failed to connect");
 
-      const response = await fetch("http://localhost:5000/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(formData),
-      });
-
-      const responseData = await response.json();
-      console.log(responseData);
+      const { response, responseData } = result;
 
       if (!response.ok) {
         const errorsOjb: Record<string, string> = {};
@@ -63,9 +55,9 @@ function Register() {
     }
   };
 
-  useEffect(() => {
-    document.title = "Register";
-  }, []);
+  // useEffect(() => {
+  //   document.title = "Register";
+  // }, []);
 
   return (
     <div className="lg:w-2/3 !mx-auto h-lvh">
@@ -218,7 +210,9 @@ function Register() {
           </div>
 
           <div className="!mt-6">
-            <Button type="submit" className="w-full">Register</Button>
+            <Button type="submit" className="w-full">
+              Register
+            </Button>
           </div>
         </form>
 

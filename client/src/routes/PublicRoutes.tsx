@@ -7,14 +7,14 @@ function PublicRoutes() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (auth.isAuthenticated) {
+    if (auth?.isAuthenticated) {
       navigate(auth.isAdmin ? "/dashboard" : "/homepage");
     }
   }, [auth]);
 
   // if (loading) return null;
 
-  return !auth.isAuthenticated ? <Outlet /> : null;
+  return !auth?.isAuthenticated ? <Outlet /> : null;
 }
 
 export default PublicRoutes;

@@ -1,6 +1,7 @@
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { useAuthContext } from "@/context/AuthProvider";
+import { callLogin } from "@/services/AuthServices";
 import type { loginTypes } from "@/types/login";
 import { AlertCircleIcon } from "lucide-react";
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
@@ -25,17 +26,10 @@ function Login() {
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      const response = await fetch("http://localhost:5000/api/login", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const result = await callLogin(formData);
 
-      const responseData = await response.json();
-      // console.log(responseData);
+      if (!result) throw new Error("Failed to connect.");
+      const { response, responseData } = result;
 
       if (!response.ok) {
         const errorsObj: Record<string, string> = {};
@@ -63,10 +57,6 @@ function Login() {
       console.log(error);
     }
   };
-
-  // useEffect(() => {
-  //   console.table(auth);
-  // }, [auth]);
 
   return (
     <div className="lg:w-2/3 !mx-auto h-lvh">
