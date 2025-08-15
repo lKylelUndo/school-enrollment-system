@@ -39,17 +39,36 @@ function EnrollmentStatus() {
 
   const handleUnenroll = async () => {
     try {
-      
+      const response = await fetch(
+        `http://localhost:5000/api/unenroll-a-degree/${auth?.userId}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
+
+      const responseData = await response.json();
+      console.log(responseData);
+
+      setCurrentUser({
+        studentName: "",
+        isEnrolled: false,
+        enrolledAt: "",
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div>
       <h1>Current enrolled in: {currentUser.enrolledAt}</h1>
 
-      <Button variant={"default"} className="!w-20" onClick={handleUnenroll}>Unenroll</Button>
+      {currentUser.isEnrolled && (
+        <Button variant={"default"} className="!w-20" onClick={handleUnenroll}>
+          Unenroll
+        </Button>
+      )}
     </div>
   );
 }
