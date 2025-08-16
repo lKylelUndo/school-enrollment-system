@@ -9,12 +9,17 @@ function PrivateRoutes() {
   const location = useLocation();
   const path = location.pathname;
 
-  const adminRoutes = ["/dashboard"];
-  const userRoutes = [
+  const adminRoutes: string[] = [
+    "/dashboard",
+    "/pending-enrollments",
+    "/create-program",
+    "/all-programs",
+  ];
+  const userRoutes: string[] = [
     "/homepage",
     "/undergraduate-programs",
     "/enrollment-status",
-    "/my-profile"
+    "/my-profile",
   ];
 
   useEffect(() => {

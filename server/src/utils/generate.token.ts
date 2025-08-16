@@ -7,6 +7,7 @@ type UserTypes = {
   middleName: string;
   lastName: string;
   email: string;
+  isAdmin: boolean;
 };
 
 export const generateToken = async (user: UserTypes) => {
@@ -18,6 +19,7 @@ export const generateToken = async (user: UserTypes) => {
         firstName: user.firstName,
         middleName: user.middleName,
         lastName: user.lastName,
+        isAdmin: user.isAdmin,
       },
       process.env.ACCESS_TOKEN_KEY as string,
       { expiresIn: "1d" }

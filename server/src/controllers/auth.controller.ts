@@ -28,6 +28,7 @@ class Auth {
         data.password,
         foundUser.password
       );
+   
       if (!isPasswordMatch)
         return res.status(400).json({
           errors: [{ path: "password", msg: "Incorrect password" }],

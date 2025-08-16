@@ -10,6 +10,9 @@ import DashBoard from "./pages/DashBoard";
 import PublicRoutes from "./routes/PublicRoutes";
 import EnrollmentStatus from "./pages/EnrollmentStatus";
 import MyProfile from "./pages/MyProfile";
+import PendingEnrollments from "./pages/PendingEnrollments";
+import CreateProgram from "./pages/CreateProgram";
+import AllProgram from "./pages/AllProgram";
 
 function App() {
   return (
@@ -32,6 +35,12 @@ function App() {
 
             {/* Admin Route */}
             <Route path="dashboard" element={<DashBoard />} />
+            <Route
+              path="pending-enrollments"
+              element={<PendingEnrollments />}
+            />
+            <Route path="create-program" element={<CreateProgram />} />
+            <Route path="all-programs" element={<AllProgram />} />
           </Route>
 
           <Route path="*" element={<h1>Page not found</h1>} />
