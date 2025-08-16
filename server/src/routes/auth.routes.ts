@@ -10,5 +10,6 @@ const router: Router = Router();
 router.post("/api/login", loginValidationRules, Auth.handleLogin);
 router.post("/api/register", registerValidationRules, Auth.handleRegister);
 router.post("/api/logout", Auth.handleLogout);
+router.put("/api/change-password", Auth.handleChangePassword)
 
 export default router;

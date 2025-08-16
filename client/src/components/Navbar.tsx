@@ -69,7 +69,7 @@ function Navbar() {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuGroup>
                     <DropdownMenuItem>
-                      Profile
+                      <NavLink to={"/my-profile"}>Profile</NavLink>
                       <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                     </DropdownMenuItem>
 

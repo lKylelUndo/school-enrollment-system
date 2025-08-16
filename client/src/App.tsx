@@ -9,6 +9,7 @@ import PrivateRoutes from "./routes/PrivateRoutes";
 import DashBoard from "./pages/DashBoard";
 import PublicRoutes from "./routes/PublicRoutes";
 import EnrollmentStatus from "./pages/EnrollmentStatus";
+import MyProfile from "./pages/MyProfile";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="homepage" element={<HomePage />} />
             <Route path="undergraduate-programs" element={<Programs />} />
             <Route path="enrollment-status" element={<EnrollmentStatus />} />
+            <Route path="my-profile" element={<MyProfile />} />
 
             {/* Admin Route */}
             <Route path="dashboard" element={<DashBoard />} />

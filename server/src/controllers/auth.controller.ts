@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { matchedData, validationResult } from "express-validator";
+import bcrypt from "bcrypt";
 import User from "../models/User";
 import "dotenv/config";
 import { comparePassword } from "../utils/compare.password";
@@ -65,6 +66,41 @@ class Auth {
       data.password = await hashedPassword(data.password);
       User.create(data);
       return res.status(200).json({ message: "Success" });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json(error);
+    }
+  }
+
+  static async handleChangePassword(req: Request, res: Response) {
+    try {
+      const { userId, currentPassword, newPassword, confirmPassword } =
+        req.body;
+
+      console.log(req.body);
+      if (newPassword != confirmPassword) {
+        return res.status(400).json({ message: "New password not match" });
+      }
+
+      const findUser = await User.findOne({ where: { id: userId } });
+      if (!findUser) return res.status(400).json({ message: "No user found" });
+
+      const isPasswordMatch = await bcrypt.compare(
+        currentPassword,
+        findUser.password
+      );
+
+      if (!isPasswordMatch)
+        return res.status(400).json({ message: "Password do not match" });
+
+      const updated = await User.update(
+        { password: await bcrypt.hash(newPassword, 10) },
+        { where: { id: userId } }
+      );
+
+      console.log("updated", updated);
+
+      return res.status(200).json({ message: "Change password successful" });
     } catch (error) {
       console.log(error);
       return res.status(500).json(error);

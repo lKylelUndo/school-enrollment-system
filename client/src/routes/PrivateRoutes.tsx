@@ -14,6 +14,7 @@ function PrivateRoutes() {
     "/homepage",
     "/undergraduate-programs",
     "/enrollment-status",
+    "/my-profile"
   ];
 
   useEffect(() => {
