@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/AuthProvider";
-import { Link } from "react-router-dom";
 
 function DashBoard() {
   const [totalStudents, setTotalStudents] = useState();
@@ -18,11 +17,11 @@ function DashBoard() {
 
   return (
     <main className="flex-1 px-10 py-10">
-      <h1 className="text-2xl font-semibold mb-10">
+      <h1 className="text-2xl font-semibold mb-10 !p-5">
         Welcome back, {auth?.firstName || "Admin"}
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 !p-5">
         <StatCard
           title="Enrolled Students"
           value={stats.totalStudents}
