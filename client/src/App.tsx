@@ -13,6 +13,7 @@ import MyProfile from "./pages/MyProfile";
 import PendingEnrollments from "./pages/PendingEnrollments";
 import CreateProgram from "./pages/CreateProgram";
 import AllProgram from "./pages/AllProgram";
+import AdminLayout from "./layout/AdminLayout";
 
 function App() {
   return (
@@ -34,13 +35,15 @@ function App() {
             <Route path="my-profile" element={<MyProfile />} />
 
             {/* Admin Route */}
-            <Route path="dashboard" element={<DashBoard />} />
-            <Route
-              path="pending-enrollments"
-              element={<PendingEnrollments />}
-            />
-            <Route path="create-program" element={<CreateProgram />} />
-            <Route path="all-programs" element={<AllProgram />} />
+            <Route element={<AdminLayout />}>
+              <Route path="dashboard" element={<DashBoard />} />
+              <Route
+                path="pending-enrollments"
+                element={<PendingEnrollments />}
+              />
+              <Route path="create-program" element={<CreateProgram />} />
+              <Route path="all-programs" element={<AllProgram />} />
+            </Route>
           </Route>
 
           <Route path="*" element={<h1>Page not found</h1>} />

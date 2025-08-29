@@ -22,8 +22,6 @@ function EnrollmentStatus() {
         );
 
         const responseData = await response.json();
-        console.log(responseData);
-
         setCurrentUser({
           studentName: responseData.studentName,
           isEnrolled: responseData.isEnrolled,
@@ -47,8 +45,7 @@ function EnrollmentStatus() {
         }
       );
 
-      const responseData = await response.json();
-      console.log(responseData);
+      await response.json();
 
       setCurrentUser({
         studentName: "",
@@ -61,13 +58,19 @@ function EnrollmentStatus() {
   };
 
   return (
-    <div>
-      <h1>Current enrolled in: {currentUser.enrolledAt}</h1>
-
-      {currentUser.isEnrolled && (
-        <Button variant={"default"} className="!w-20" onClick={handleUnenroll}>
-          Unenroll
-        </Button>
+    <div className="!p-15 w-3/4 !mx-auto h-100">
+      {currentUser.isEnrolled ? (
+        <div className="flex flex-col gap-y-2">
+          <h1>{currentUser.studentName}</h1>
+          <h1>{currentUser.enrolledAt}</h1>
+          <div>
+            <Button variant={"default"} onClick={handleUnenroll} className="!px-4">
+              Unenroll
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <p>Currently not enrolled</p>
       )}
     </div>
   );
