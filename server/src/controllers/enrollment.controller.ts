@@ -16,6 +16,17 @@ class Enrollment {
     }
   }
 
+  static async getAllEnrolled(req: Request, res: Response) {
+    try {
+      const students = await Student.findAll();
+
+      return res.status(200).json(students);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ error });
+    }
+  }
+
   static async enrollADegree(req: Request, res: Response) {
     try {
       console.table(req.body);
